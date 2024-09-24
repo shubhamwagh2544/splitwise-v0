@@ -1,8 +1,10 @@
 import { isNil } from 'lodash';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 import CustomError from '../error/customError';
 import DbConfig from '../config/dbConfig';
+import { JWT_SECRET } from '../config/config';
 
 const prisma = DbConfig.getInstance();
 
@@ -49,8 +51,12 @@ class AuthService {
 
         // todo: joins default room
 
+        const token = jwt.sign({ id: user.id, email }, JWT_SECRET as string, {
+            expiresIn: '1h',
+        });
+
         const { password: _, ...userWithoutPassword } = user;
-        return userWithoutPassword;
+        return { token, ...userWithoutPassword };
     }
 
     async signIn(email: string, password: string) {
@@ -75,8 +81,12 @@ class AuthService {
             throw new CustomError('Invalid email or password', 400);
         }
 
+        const token = jwt.sign({ id: user.id, email }, JWT_SECRET as string, {
+            expiresIn: '1h',
+        });
+
         const { password: _, ...userWithoutPassword } = user;
-        return userWithoutPassword;
+        return { token, ...userWithoutPassword };
     }
 }
 
