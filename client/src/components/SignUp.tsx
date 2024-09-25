@@ -50,15 +50,16 @@ export default function SignUp() {
     }
 
     return (
-        <div className="flex justify-center items-center h-screen">
-            <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
-                <h1 className="text-3xl font-bold text-center text-purple-700">Hola 👋</h1>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+            <h1 className="text-4xl font-bold mb-8">Sign Up</h1>
+            <div className="w-full max-w-md mb-8">
+                <h2 className="text-2xl font-semibold mb-4">Create an Account</h2>
                 <div className="flex flex-col gap-4 mt-5">
                     <input
                         type="text"
                         name="email"
                         placeholder="Email"
-                        className="p-3 border border-gray-300 rounded"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required
                         onChange={handleInputChange}
                     />
@@ -66,26 +67,26 @@ export default function SignUp() {
                         type="password"
                         name="password"
                         placeholder="Password"
-                        className="p-3 border border-gray-300 rounded"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required
                         onChange={handleInputChange}
                     />
                     <button
                         type="submit"
-                        className="bg-purple-700 text-white p-3 rounded hover:bg-purple-800"
+                        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
                         onClick={handleSubmit}
                     >
                         Sign Up
                     </button>
                 </div>
                 <div className="text-center mt-5">
-                    <span className="text-sm">
-                        Already Have an Account ?
-                        <Link to="/signin" className="text-purple-700 hover:underline">
-                            {' '}
-                            Sign In{' '}
-                        </Link>
-                    </span>
+            <span className="text-sm">
+                Already Have an Account?
+                <Link to="/signin" className="text-blue-500 hover:underline">
+                    {' '}
+                    Sign In{' '}
+                </Link>
+            </span>
                 </div>
             </div>
         </div>
